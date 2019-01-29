@@ -9,6 +9,8 @@ import { HomePage } from '../pages/home/home';
 import { TabsPage } from '../pages/tabs/tabs';
 import { Camera } from '@ionic-native/camera';
 import { HTTP } from '@ionic-native/http';
+import { MyPopOverPage } from '/home/tobias/DidimapProject/testApp/src/pages/home/my-pop-over';
+
 
 
 
@@ -21,11 +23,13 @@ import { SplashScreen } from '@ionic-native/splash-screen';
     AboutPage,
     ContactPage,
     HomePage,
-    TabsPage
+    TabsPage,
+    MyPopOverPage
   ],
   imports: [
     BrowserModule,
     IonicModule.forRoot(MyApp)
+
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -33,7 +37,9 @@ import { SplashScreen } from '@ionic-native/splash-screen';
     AboutPage,
     ContactPage,
     HomePage,
-    TabsPage
+    TabsPage,
+    MyPopOverPage
+
   ],
   providers: [
     StatusBar,

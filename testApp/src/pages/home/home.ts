@@ -4,7 +4,8 @@ import * as Tesseract from 'tesseract.js'
 import {Camera, PictureSourceType} from '@ionic-native/camera';
 import { ActionSheetController } from 'ionic-angular';
 import { HTTP } from '@ionic-native/http';
-
+import { PopoverController } from 'ionic-angular';
+import { MyPopOverPage } from './my-pop-over';
 
 
 @Component({
@@ -15,9 +16,15 @@ export class HomePage {
 
   selectedImage: string;
   imageText: string;
-  ingredientInfo: string
+  ingredientInfo: string;
+  info = [];
 
-  constructor(public navCtrl: NavController, private camera: Camera, private actionSheetCtrl: ActionSheetController, private http: HTTP) {
+  constructor(public navCtrl: NavController, private camera: Camera, private actionSheetCtrl: ActionSheetController, private http: HTTP, public popoverCtrl: PopoverController) {
+  }
+
+  presentPopover() {
+    const popover = this.popoverCtrl.create(MyPopOverPage, this.ingredientInfo);
+    popover.present();
   }
 
   selectSource() {
@@ -69,16 +76,31 @@ export class HomePage {
     }
 
 
-
-
     this.http.post('http://localhost:3000/api/v1/check_fodmaps/checkingredients', body, {})
       .then(data => {
         console.log(data.status);
         console.log(data.data);
         console.log(data.headers);
-        var tmp = JSON.parse(data.data);
-        this.ingredientInfo = tmp.ingredients.oligo_value;
-        JSON.stringify(this.ingredientInfo);
+        let tmp = JSON.parse(data.data);
+        //this.ingredientInfo = tmp.ingredients.oligo_value;
+        //JSON.stringify(this.ingredientInfo);
+
+        console.log("before");
+        console.log(tmp[0].food);
+        //console.log(tmp.ingredients.food);
+        console.log("after");
+
+        this.ingredientInfo = tmp[0].food;
+        for (let entry of tmp){
+          this.info.push(entry.food);
+        }
+
+        this.info.toString();
+
+        console.log(this.info);
+
+
+        //JSON.stringify(this.ingredientInfo);
       });
   }
 }
