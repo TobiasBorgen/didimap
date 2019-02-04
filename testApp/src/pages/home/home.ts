@@ -16,14 +16,28 @@ export class HomePage {
 
   selectedImage: string;
   imageText: string;
-  ingredientInfo: string;
-  info = [];
+  ingredient: string;
+  ingredientlist = [];
+  all_info = [];
+  index = 0;
 
   constructor(public navCtrl: NavController, private camera: Camera, private actionSheetCtrl: ActionSheetController, private http: HTTP, public popoverCtrl: PopoverController) {
   }
 
-  presentPopover() {
-    const popover = this.popoverCtrl.create(MyPopOverPage, this.ingredientInfo);
+  btnColor(t) {
+    const red_index = Object.values(t).includes('high')
+    const orange_index = Object.values(t).includes('moderate')
+    if (red_index)
+      return 'red'
+    else if (orange_index)
+      return 'orange'
+    else
+      return 'green'
+  }
+  presentPopover(ingredientInfo) {
+    //console.log(this.index);
+    const popover = this.popoverCtrl.create(MyPopOverPage, {key1:ingredientInfo});
+    //this.index +=1;
     popover.present();
   }
 
@@ -82,6 +96,7 @@ export class HomePage {
         console.log(data.data);
         console.log(data.headers);
         let tmp = JSON.parse(data.data);
+        this.all_info = tmp;
         //this.ingredientInfo = tmp.ingredients.oligo_value;
         //JSON.stringify(this.ingredientInfo);
 
@@ -90,14 +105,14 @@ export class HomePage {
         //console.log(tmp.ingredients.food);
         console.log("after");
 
-        this.ingredientInfo = tmp[0].food;
+        this.ingredient = tmp[0].food;
         for (let entry of tmp){
-          this.info.push(entry.food);
+          this.ingredientlist.push(entry.food);
         }
 
-        this.info.toString();
+        this.ingredientlist.toString();
 
-        console.log(this.info);
+        console.log(this.ingredientlist);
 
 
         //JSON.stringify(this.ingredientInfo);

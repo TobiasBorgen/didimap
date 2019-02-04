@@ -1,27 +1,31 @@
-<ion-header>
-  <ion-navbar>
-    <ion-title>Home</ion-title>
-  </ion-navbar>
-</ion-header>
+<!DOCTYPE html>
+<html>
+  <ion-header>
+    <ion-navbar>
+      <ion-title>Home</ion-title>
+    </ion-navbar>
+  </ion-header>
 
-<ion-content padding>
-  <h2>Welcome to Ionic!</h2>
-  <button ion-button full (click)="selectSource()">Select Image</button>
-  <button ion-button full (click)="recognizeImage()" [disabled]="!selectedImage">Recognize Image</button>
-  <button ion-button full (click)="checkIngredients()">Check Ingredients</button>
 
-  <img [src]="selectedImage" *ngIf="selectedImage">
+  <ion-content padding>
+    <h2>Welcome to Ionic!</h2>
+    <button ion-button full (click)="selectSource()">Select Image</button>
+    <button ion-button full (click)="recognizeImage()" [disabled]="!selectedImage">Recognize Image</button>
+    <button ion-button full (click)="checkIngredients()">Check Ingredients</button>
 
-  <ion-card *ngIf="imageText">
-    <ion-card-header>
-      Image Text
-    </ion-card-header>
-    <ion-card-content>
-      {{ imageText }}
-    </ion-card-content>
-  </ion-card>
+    <img [src]="selectedImage" *ngIf="selectedImage">
 
-  <h2>{{ingredientInfo}}</h2>
-  <button ion-button (click)="presentPopover($event)">{{ingredientInfo}}</button>
-  <h2>{{info}}</h2>
-</ion-content>
+    <ion-card *ngIf="imageText">
+      <ion-card-header>
+        Image Text
+      </ion-card-header>
+      <ion-card-content>
+        {{ imageText }}
+      </ion-card-content>
+    </ion-card>
+
+    <ion-col *ngFor="let t of this.all_info">
+      <button ion-button color="{{btnColor(t)}}" (click)="presentPopover(t,$event)">{{t.food}}</button>
+    </ion-col>
+  </ion-content>
+</html>
