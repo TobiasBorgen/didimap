@@ -1,0 +1,64 @@
+<!--
+  Generated template for the MealLogPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>Meal Log</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+  <ion-list>
+    <ion-item>
+      <ion-label fixed>New Meal</ion-label>
+      <ion-input type="text" newMeal="" #newMeal></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label> Symptoms Overall </ion-label>
+      <ion-range min="0" max="4" step="1" snaps="true" color="red" [(ngModel)]="singleValue0">
+        <ion-icon range-left color="green" name="happy"></ion-icon>
+        <ion-icon range-right color="red" name="sad"></ion-icon>
+      </ion-range>
+    </ion-item>
+
+    <ion-item>
+      <ion-label> Pain/discomfort </ion-label>
+      <ion-range min="0" max="4" step="1" snaps="true" color="red" [(ngModel)]="singleValue1">
+        <ion-icon range-left color="green" name="happy"></ion-icon>
+        <ion-icon range-right color="red" name="sad"></ion-icon>
+      </ion-range>
+    </ion-item>
+    <ion-item>
+      <ion-label> Bloating </ion-label>
+      <ion-range min="0" max="4" step="1" snaps="true" color="red" [(ngModel)]="singleValue2">
+        <ion-icon range-left color="green" name="happy"></ion-icon>
+        <ion-icon range-right color="red" name="sad"></ion-icon>
+      </ion-range>
+    </ion-item>
+
+    <ion-item>
+      <ion-label> Tiredness </ion-label>
+      <ion-range min="0" max="4" step="1" snaps="true" color="red" [(ngModel)]="singleValue3">
+        <ion-icon range-left color="green" name="happy"></ion-icon>
+        <ion-icon range-right color="red" name="sad"></ion-icon>
+        </ion-range>
+    </ion-item>
+
+    <ion-item>
+      <ion-label> Nausea </ion-label>
+      <ion-range min="0" max="4" step="1" snaps="true" color="red" [(ngModel)]="singleValue4">
+        <ion-icon range-leftz color="green" name="happy"></ion-icon>
+        <ion-icon range-right color="red" name="sad"></ion-icon>
+      </ion-range>
+    </ion-item>
+  </ion-list>
+
+  <button ion-button full (click)="addMeal(newMeal)">Add new meal</button>
+</ion-content>

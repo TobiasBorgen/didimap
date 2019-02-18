@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_01_16_124928) do
+ActiveRecord::Schema.define(version: 2019_02_04_133620) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -24,6 +24,12 @@ ActiveRecord::Schema.define(version: 2019_01_16_124928) do
     t.string "fruktose_value", default: "low"
     t.string "polyol_value", default: "low"
     t.string "laktose_value", default: "low"
+  end
+
+  create_table "user_tested_ingredients", force: :cascade do |t|
+    t.string "food", limit: 100
+    t.integer "users_with_symptoms"
+    t.integer "users_without_symptoms"
   end
 
 end

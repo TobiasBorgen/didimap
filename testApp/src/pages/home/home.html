@@ -11,7 +11,26 @@
     <h2>Welcome to Ionic!</h2>
     <button ion-button full (click)="selectSource()">Select Image</button>
     <button ion-button full (click)="recognizeImage()" [disabled]="!selectedImage">Recognize Image</button>
-    <button ion-button full (click)="checkIngredients()">Check Ingredients</button>
+    <button ion-button full (click)="checkIngredients()" [disabled]="!imageText">Check Ingredients</button>
+    <button ion-button full (click)="checkIngredientsConsumerDatabase()" [disabled]="!not_found">Check Ingredients on Consumer Database</button>
+    <ion-list>
+
+      <ion-item>
+        <ion-label fixed>Food</ion-label>
+        <ion-input type="text" newFood="" #newFood></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label>Symptoms?</ion-label>
+        <ion-toggle checked="false" #checked></ion-toggle>
+      </ion-item>
+
+    </ion-list>
+    <button ion-button full (click)="addIngredientToConsumerDatabase()">Add New/Vote on Ingredient in Consumer Database</button>
+    <button ion-button full (click)="getData()">Get data from </button>
+
+    <!-- <button ion-button full (click)="showPrompt()">Add New Ingredient</button> -->
+
 
     <img [src]="selectedImage" *ngIf="selectedImage">
 
@@ -22,10 +41,15 @@
       <ion-card-content>
         {{ imageText }}
       </ion-card-content>
+      <ion-item>
+        <ion-label>Additional Ingredients</ion-label>
+        <ion-input type="text" additionalIngredients="" #additionalIngredients></ion-input>
+      </ion-item>
     </ion-card>
 
     <ion-col *ngFor="let t of this.all_info">
-      <button ion-button color="{{btnColor(t)}}" (click)="presentPopover(t,$event)">{{t.food}}</button>
+      <button *ngIf="t.oligo_value" ion-button color="{{btnColor(t)}}"  (click)="presentPopover(t,$event)">{{t.food}}</button>
+      <button *ngIf="!t.oligo_value" ion-button color="{{btnColor(t)}}" outline (click)="presentPopover(t,$event)">{{t.food}}</button>
     </ion-col>
   </ion-content>
 </html>
