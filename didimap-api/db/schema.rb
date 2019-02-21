@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_02_04_133620) do
+ActiveRecord::Schema.define(version: 2019_02_18_151507) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -24,6 +24,24 @@ ActiveRecord::Schema.define(version: 2019_02_04_133620) do
     t.string "fruktose_value", default: "low"
     t.string "polyol_value", default: "low"
     t.string "laktose_value", default: "low"
+  end
+
+  create_table "food_products", force: :cascade do |t|
+    t.string "food", limit: 200
+    t.string "ingredients"
+    t.string "image_path"
+    t.integer "proteins_per_100"
+    t.integer "carbohydrates_per_100"
+    t.integer "fat_per_100"
+    t.integer "calories_per_100"
+    t.integer "calories_total"
+    t.integer "weight"
+    t.string "oligo_value", default: "unknown"
+    t.string "fructose_value", default: "unknown"
+    t.string "polyol_value", default: "unknown"
+    t.string "lactose_value", default: "unknown"
+    t.string "gtin"
+    t.string "producer"
   end
 
   create_table "user_tested_ingredients", force: :cascade do |t|

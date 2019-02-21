@@ -1,5 +1,6 @@
 import {Component, ViewChild} from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { Storage } from '@ionic/storage';
 
 /**
  * Generated class for the MealLogPage page.
@@ -22,7 +23,7 @@ export class MealLogPage {
   singleValue4: number = 0;
 
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, private storage: Storage) {
   }
 
   ionViewDidLoad() {
@@ -33,7 +34,16 @@ export class MealLogPage {
     console.log("Adding meal");
     console.log(meal.value);
     console.log("Overall: " + this.singleValue0 + ", Pain/Discomfort: " + this.singleValue1 + ", Bloating: " + this.singleValue2 + ", Tiredness: " + this.singleValue3 + ", Nausea: " + this.singleValue4);
+    var value = "Overall: " + this.singleValue0 + ", Pain/Discomfort: " + this.singleValue1 + ", Bloating: " + this.singleValue2 + ", Tiredness: " + this.singleValue3 + ", Nausea: " + this.singleValue4;
 
+    this.singleValue0 = 0;
+    this.singleValue1 = 0;
+    this.singleValue2 = 0;
+    this.singleValue3 = 0;
+    this.singleValue4 = 0;
+    this.newMeal = "";
+
+    //this.storage.set(meal.value, value);
   }
 
 }
